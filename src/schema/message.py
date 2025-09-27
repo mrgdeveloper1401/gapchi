@@ -3,13 +3,16 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database.connection import Base
 
+from src.schema.users import Users
+from src.schema.core import File
+
 
 class Message(Base):
     __tablename__ = "message"
     
     id = Column(BigInteger, primary_key=True, index=True, autoincrement=True)
-    sender_user_id = Column(BigInteger, ForeignKey("Users.id", ondelete="CASCADE"))
-    receiver_user_id = Column(BigInteger, ForeignKey("Users.id", ondelete="CASCADE"))
+    sender_user_id = Column(BigInteger, ForeignKey(Users.id, ondelete="CASCADE"))
+    receiver_user_id = Column(BigInteger, ForeignKey(Users.id, ondelete="CASCADE"))
     content = Column(Text)
     message_type = Column(String(50), default='text')  # text, image, file, etc.
     is_active = Column(Boolean, default=True)
@@ -19,8 +22,8 @@ class Message(Base):
     updated = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     
     # Relationships
-    sender = relationship("Users", foreign_keys=[sender_user_id], back_populates="sent_messages")
-    receiver = relationship("Users", foreign_keys=[receiver_user_id], back_populates="received_messages")
+    sender = relationship(Users, foreign_keys=[sender_user_id], back_populates="sent_messages")
+    receiver = relationship(Users, foreign_keys=[receiver_user_id], back_populates="received_messages")
     files = relationship("MessageFile", back_populates="message")
 
 

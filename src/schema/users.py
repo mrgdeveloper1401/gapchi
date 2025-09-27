@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from database.connection import Base
 
+from src.schema.post import Post
+from src.schema.core import File, State, Country
 
 class Users(Base):
     __tablename__ = "Users"
@@ -20,8 +22,8 @@ class Users(Base):
     
     # Relationships
     profile = relationship("Profile", back_populates="user", uselist=False)
-    posts = relationship("Post", back_populates="user")
-    files = relationship("File", back_populates="user")
+    posts = relationship(Post, back_populates="user")
+    files = relationship(File, back_populates="user")
 
 
 class Profile(Base):
@@ -45,10 +47,10 @@ class Profile(Base):
     
     # Relationships
     user = relationship("Users", back_populates="profile")
-    state = relationship("State", back_populates="profiles")
-    country = relationship("Country")
-    banner_image = relationship("File", foreign_keys=[banner_image_id])
-    profile_image = relationship("File", foreign_keys=[profile_image_id])
+    state = relationship(State, back_populates="profiles")
+    country = relationship(Country)
+    banner_image = relationship(File, foreign_keys=[banner_image_id])
+    profile_image = relationship(File, foreign_keys=[profile_image_id])
 
 
 class UserLocation(Base):
