@@ -9,11 +9,11 @@ DB_SERVER = config("DB_SERVER", cast=str)
 DB_PORT = config("DB_PORT", cast=int)
 DB_NAME = config("DB_NAME", cast=str)
 
-SQLALCHEMY_DATABASE_URL = {
+SQLALCHEMY_DATABASE_URL = (
     f"mssql+pyodbc://{DB_USERNAME}:{DB_PASSWORD}"
-    f"@{DB_SERVER}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+    f"@{DB_SERVER}:{DB_PORT}/{DB_NAME}"
     "?driver=ODBC+Driver+17+for+SQL+Server"
-}
+)
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,

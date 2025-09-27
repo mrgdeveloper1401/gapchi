@@ -27,10 +27,10 @@
 - ✅ **مدیریت فایل و آپلود**
 - ✅ **موقعیت‌یابی جغرافیایی**
 - ✅ **سیستم اطلاع‌رسانی**
-- ✅ **دسترسی‌های سطح‌بندی شده**
 - ✅ **پشتیبانی از MSSQL**
 - ✅ **الگوی معماری مدرن**
 <!-- - ✅ **مستندات خودکار API** (Swagger) -->
+<!-- - ✅ **دسترسی‌های سطح‌بندی شده** -->
 
 <!-- ## 🗂️ ساختار پروژه
 gapchi-api/
@@ -79,12 +79,12 @@ gapchi-api/
 - **ODBC Driver 17** for SQL Server
 - **Git**
 
-### نصب ODBC Driver (Windows)
-    winget install Microsoft.ODBCDriver17ForSQLServer
+### نصب ODBC Driver (linux)
+    sudo apt install odbcinst1debian2 unixodbc unixodbc-dev
 
 ### clone project
-git clone https://github.com/your-username/gapchi-api.git
-cd gapchi-api
+    git clone https://github.com/your-username/gapchi-api.git
+    cd gapchi-api
 
 ### create venv
     for linux --> python3 -m venv venv
