@@ -32,7 +32,7 @@
 - ✅ **پشتیبانی از MSSQL**
 - ✅ **الگوی معماری مدرن**
 
-## 🗂️ ساختار پروژه
+<!-- ## 🗂️ ساختار پروژه
 gapchi-api/
 ├── app/
 │ ├── api/
@@ -68,7 +68,7 @@ gapchi-api/
 ├── .env
 ├── requirements.txt
 ├── main.py
-└── README.md
+└── README.md -->
 
 
 ## ⚙️ پیش‌نیازها
