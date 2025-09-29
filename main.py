@@ -1,42 +1,38 @@
 from fastapi import FastAPI
-from src.db.mssql import engine, Base
-from src.schema import (
-    BlockUser,
-    Comment,
-    CommentLike,
-    Core,
-    CoreApp,
-    Country,
-    FavoritUser,
-    File,
-    IpBlock,
-    Like,
-    LoginAttempts,
-    Message,
-    MessageFile,
-    UserTokenBlock,
-    Users,
-    UserNotification,
-    UserLog,
-    UserLocation,
-    State,
-    Post,
-    PostFile,
-    PostLike,
-    Relation,
-    PublicNotification,
-    Profile
-)
+from src.db.postgre import settings
+from src.db.connect_db import engine
+from src.db.base import Base
+from src.db.models import Users
+from src.db.connect_db import engine
 
 app = FastAPI()
 
 def create_tables():
     Base.metadata.create_all(bind=engine)
 
-create_tables()
-
-if __name__ == "__main__":
-    import uvicorn
+def start_application():
+    app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
     create_tables()
-    print("All tables created successfully!")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    return app
+
+
+app = start_application()
+
+@app.get("/")
+async def home():
+    return {"msg":"Hello FastAPI🚀"}
+
+
+@app.get("/check_db")
+async def check_db():
+    try:
+        with engine.connect() as conn:
+            return {
+                "conn": "connection successfly",
+                "url": conn.engine.url
+            }
+    except Exception as e:
+        return {
+            "conn": "connection unsucceful",
+            "error": str(e)
+        }

@@ -75,12 +75,12 @@ gapchi-api/
 
 ### نرم‌افزارهای مورد نیاز
 - **Python 3.8+**
-- **Microsoft SQL Server** (2016+)
-- **ODBC Driver 17** for SQL Server
+- **POSTGRESQL** (17)
+- **docker** for postgres
 - **Git**
 
-### نصب ODBC Driver (linux)
-    sudo apt install odbcinst1debian2 unixodbc unixodbc-dev
+<!-- ### نصب ODBC Driver (linux)
+    sudo apt install odbcinst1debian2 unixodbc unixodbc-dev -->
 
 ### clone project
     git clone https://github.com/your-username/gapchi-api.git
